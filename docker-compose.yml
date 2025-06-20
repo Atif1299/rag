@@ -1,20 +1,4 @@
-version: "3.8"
-
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: rag-backend1
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - standalone
-    networks:
-      - milvus
-
   etcd:
     container_name: milvus-etcd
     image: quay.io/coreos/etcd:v3.5.5
@@ -25,17 +9,12 @@ services:
       - ETCD_SNAPSHOT_COUNT=50000
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd
-    command: >
-      etcd -advertise-client-urls=http://127.0.0.1:2379 
-           -listen-client-urls http://0.0.0.0:2379 
-           --data-dir /etcd
+    command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
     healthcheck:
       test: ['CMD', 'etcdctl', 'endpoint', 'health']
       interval: 30s
       timeout: 20s
       retries: 3
-    networks:
-      - milvus
 
   minio:
     container_name: milvus-minio
@@ -44,8 +23,8 @@ services:
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - '9001:9001'
+      - '9000:9000'
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
     command: minio server /minio_data --console-address ":9001"
@@ -54,13 +33,13 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
-    networks:
-      - milvus
 
   standalone:
     container_name: milvus-standalone
     image: milvusdb/milvus:v2.3.5
-    command: ["milvus", "run", "standalone"]
+    command: ['milvus', 'run', 'standalone'] # Corrected from "iband alone"
+    security_opt:
+      - seccomp:unconfined
     environment:
       ETCD_ENDPOINTS: etcd:2379
       MINIO_ADDRESS: minio:9000
@@ -73,14 +52,12 @@ services:
       timeout: 20s
       retries: 3
     ports:
-      - "19530:19530"
-      - "9091:9091"
+      - '19530:19530'
+      - '9091:9091'
     depends_on:
-      - etcd
-      - minio
-    networks:
-      - milvus
+      - 'etcd'
+      - 'minio'
 
 networks:
-  milvus:
-    driver: bridge
+  default:
+    name: milvus
