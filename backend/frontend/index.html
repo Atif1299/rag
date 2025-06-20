@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI Document Manager</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app-container">
+            <div class="brand-header">
+                <div class="brand-logo">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="60"
+                        height="60"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="m10.4 12.6 1.6-1.6 1.6 1.6"></path>
+                        <path d="m12 17.6-1.6-1.6-1.6 1.6"></path>
+                        <path d="m14.4 15-1.6-1.6-1.6 1.6"></path>
+                        <path d="m12 11-1.6-1.6-1.6 1.6"></path>
+                    </svg>
+                </div>
+                <h1 class="brand-title">Intelligent Document Query</h1>
+                <p class="brand-subtitle">Upload documents, ask complex questions and get instant, AI-powered answers.</p>
+            </div>
+            <header class="app-header">
+                <nav class="app-nav">
+                    <a href="#documents" class="nav-link active" data-view="documents-view">
+                        <svg
+                            class="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line
+                                x1="16"
+                                y1="13"
+                                x2="8"
+                                y2="13"
+                            ></line>
+                            <line
+                                x1="16"
+                                y1="17"
+                                x2="8"
+                                y2="17"
+                            ></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Documents
+                    </a>
+                    <a href="#upload" class="nav-link" data-view="upload-view">
+                        <svg
+                            class="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line
+                                x1="12"
+                                y1="3"
+                                x2="12"
+                                y2="15"
+                            ></line>
+                        </svg>
+                        Upload
+                    </a>
+                    <a href="#query" class="nav-link" data-view="query-view">
+                        <svg
+                            class="icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line
+                                x1="21"
+                                y1="21"
+                                x2="16.65"
+                                y2="16.65"
+                            ></line>
+                            <line
+                                x1="11"
+                                y1="8"
+                                x2="11"
+                                y2="14"
+                            ></line>
+                            <line
+                                x1="8"
+                                y1="11"
+                                x2="14"
+                                y2="11"
+                            ></line>
+                        </svg>
+                        Query
+                    </a>
+                </nav>
+            </header>
+            <main class="app-main">
+                <div id="documents-view" class="view active">
+                    <div class="view-header">
+                        <div>
+                            <h1>My Documents</h1>
+                            <p>Manage your uploaded documents</p>
+                        </div>
+                        <div class="header-actions">
+                            <button id="refresh-docs-btn" class="btn btn-secondary">
+                                <svg
+                                    class="icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                                </svg>
+                                Refresh
+                            </button>
+                            <button id="sync-rag-btn" class="btn btn-primary">
+                                <svg
+                                    class="icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                                </svg>
+                                Sync to RAG
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="select-all-checkbox">
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="docs-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="view-footer">
+                        <p id="docs-total-count">0 documents total</p>
+                    </div>
+                </div>
+                <div id="upload-view" class="view">
+                    <div id="upload-header" class="view-header">
+                        <div class="view-header">
+                            <div>
+                                <h1>Upload Document</h1>
+                                <p>Upload a document to your collection</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <div id="drop-zone" class="drop-zone">
+                            <input
+                                type="file"
+                                id="file-input"
+                                hidden
+                                multiple
+                            >
+                            <svg
+                                class="icon-xl"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line
+                                    x1="12"
+                                    y1="3"
+                                    x2="12"
+                                    y2="15"
+                                ></line>
+                            </svg>
+                            <p>
+                                <b>Drag & drop your file here</b>
+                            </p>
+                            <p>or click to browse (PDF, DOCX, TXT, etc.)</p>
+                        </div>
+                        <div id="file-preview-area"></div>
+                    </div>
+                    <div class="upload-actions">
+                        <button id="cancel-upload-btn" class="btn btn-secondary">Cancel</button>
+                        <button id="upload-btn" class="btn btn-primary" disabled>Upload Document</button>
+                    </div>
+                </div>
+                <div id="query-view" class="view">
+                    <div class="view-header">
+                        <div>
+                            <h1>Ask Your Documents</h1>
+                            <p>Query your documents using natural language</p>
+                        </div>
+                    </div>
+                    <form id="query-form" class="query-form">
+                        <div class="form-group">
+                            <textarea id="query-input" placeholder="e.g., What is RAG in AI?"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <svg
+                                    class="icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <line
+                                        x1="22"
+                                        y1="2"
+                                        x2="11"
+                                        y2="13"
+                                    ></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                Submit Query
+                            </button>
+                        </div>
+                    </form>
+                    <div id="query-results-container" class="query-results-container"></div>
+                </div>
+            </main>
+            <div class="user-profile-icon">N</div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>

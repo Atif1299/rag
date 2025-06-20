@@ -1,0 +1,450 @@
+/* --- ROOT & GLOBAL STYLES --- */
+:root {
+    --font-family: 'Inter', sans-serif;
+    --bg-color: #F9FAFB;
+    --container-bg-color: #FFFFFF;
+    --primary-text-color: #111827;
+    --secondary-text-color: #6B7280;
+    --primary-brand-color: #111827;
+    --border-color: #E5E7EB;
+    --hover-bg-color: #F3F4F6;
+    --primary-btn-text: #FFFFFF;
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    font-family: var(--font-family);
+    font-size: 16px;
+}
+
+.brand-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem 1rem;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--container-bg-color);
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.brand-logo svg {
+  width: 48px;
+  height: 48px;
+  color: var(--primary-brand-color);
+}
+
+.brand-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  /* Eye-catching gradient text effect */
+  background: linear-gradient(45deg, #2c3e50, #000000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Fallback for browsers that don't support gradient text */
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+  margin-top: 0.75rem;
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--secondary-text-color);
+  line-height: 1.6;
+}
+
+
+/* --- LAYOUT & MAIN CONTAINER --- */
+
+#app-container {
+    padding: 0 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+.app-header {
+    padding: 0rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.25rem;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary-text-color);
+}
+
+.nav-link.active {
+    color: var(--primary-text-color);
+    border-bottom-color: var(--primary-brand-color);
+}
+
+.app-main {
+    padding: 2rem 0;
+}
+
+.view {
+    display: none;
+    background-color: var(--container-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+}
+
+.view.active {
+    display: block;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.view-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.view-header p {
+    color: var(--secondary-text-color);
+    margin-top: 0.25rem;
+    margin-bottom: 0.50rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.view-footer {
+    padding-top: 1rem;
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+}
+
+/* --- GENERAL & UTILITY CLASSES --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-brand-color);
+    color: var(--primary-btn-text);
+}
+
+.btn-primary:hover {
+    background-color: #374151;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: var(--container-bg-color);
+    color: var(--primary-text-color);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+.icon-xl {
+    width: 32px;
+    height: 32px;
+    color: var(--secondary-text-color);
+}
+
+/* --- DOCUMENTS VIEW --- */
+.table-container {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    /* overflow: hidden; IS REMOVED TO PREVENT CLIPPING THE MENU */
+}
+
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.docs-table th, .docs-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.docs-table thead {
+    background-color: var(--hover-bg-color);
+    color: var(--secondary-text-color);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.docs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.docs-table tbody tr:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.type-badge {
+    display: inline-block;
+    background-color: var(--primary-brand-color);
+    color: var(--primary-btn-text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* --- ACTION MENU DROPDOWN STYLES --- */
+.actions-cell {
+    position: relative;
+    text-align: right;
+    width: 50px;
+}
+
+.action-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.action-menu-btn:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.action-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    background-color: var(--container-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 160px;
+    padding: 0.5rem 0;
+    display: none; /* Hidden by default */
+}
+
+.action-menu.visible {
+    display: block; /* Shown by JS */
+}
+
+.action-menu.drop-up {
+    top: auto;
+    bottom: 100%;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.action-item:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.action-item .icon {
+    color: var(--secondary-text-color);
+}
+
+.action-item.action-delete {
+    color: #EF4444; /* Red color for delete */
+}
+.action-item.action-delete .icon {
+    color: #EF4444;
+}
+
+/* --- UPLOAD VIEW --- */
+.upload-area {
+    padding: 2rem 0;
+}
+#upload-header{
+    flex-direction: row;
+}
+
+.drop-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0rem;
+    padding: 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.drop-zone.dragover {
+    border-color: var(--primary-brand-color);
+    background-color: var(--hover-bg-color);
+}
+
+.drop-zone b {
+    font-weight: 400;
+}
+.drop-zone p {
+    color: var(--secondary-text-color);
+}
+
+#file-preview-area {
+    margin-top: 1.5rem;
+}
+
+.file-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--hover-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.file-preview-item .file-name {
+    flex-grow: 1;
+}
+
+.file-preview-item .remove-file-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+}
+
+.upload-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0rem;
+    /* padding-top: 1rem; */
+}
+
+/* --- QUERY VIEW --- */
+.query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#query-input{
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--container-bg-color);
+}
+#query-input {
+    min-height: 120px;
+    resize: vertical;
+}
+#query-input::placeholder {
+    color: var(--secondary-text-color);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.query-results-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.query-answer {
+    background-color: var(--hover-bg-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+}
+.query-answer h3 {
+    margin-bottom: 0.75rem;
+}
+
+/* --- USER PROFILE ICON --- */
+.user-profile-icon {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background-color: #F87171; /* A reddish color as in the screenshot */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
